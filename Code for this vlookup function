@@ -1,0 +1,21 @@
+/** 
+vlookupmade by me
+@customfunction
+
+*/
+function vlookupBasic(searchKey, searchRange, returnIndex) {
+  // Get the active spreadsheet and sheet
+  var ss = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+
+  // Get the data from the defined search range
+  var data = ss.getRange("A1:E11").getValues();
+
+  // Loop through the range to find the search key
+  for (var i = 0; i < data.length; i++) {
+    if (data[i][0] === searchKey) {  // Assuming search key is in the first column
+      return data[i][returnIndex - 1];  // returnIndex is 1-based, adjust for 0-based index
+    }
+  }
+
+  return "Not Found";  // Return "Not Found" if the search key doesn't exist
+}
